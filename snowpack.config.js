@@ -2,16 +2,14 @@
 module.exports = {
   mount: {
     public: '/',
-    src: '/_dist_'
+    src: '/_dist_',
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    [
-      '@snowpack/plugin-webpack',
-      {}
-    ]
+    '@snowpack/plugin-sass',
+    ['@snowpack/plugin-webpack', {}],
   ],
   install: [
     /* ... */
@@ -21,7 +19,7 @@ module.exports = {
   },
   devOptions: {
     open: 'none',
-    port: 9000
+    port: 9000,
   },
   buildOptions: {
     /* ... */
@@ -30,6 +28,7 @@ module.exports = {
     /* ... */
   },
   alias: {
-    '~': './src'
-  }
+    '~': './src',
+    utils: './src/utils',
+  },
 }
