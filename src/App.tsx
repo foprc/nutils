@@ -1,41 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+  Navigate
+} from 'react-router-dom'
+import { ThemeProvider } from 'theme-ui'
+import HomeRoute from './routes/home'
+import AboutRoute from './routes/about'
+import theme from './theme'
+import styled from '@emotion/styled'
 
 interface AppProps {}
 
 function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
-    </div>
-  );
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Header>
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+        </Header>
+        <Main>
+          <Routes>
+            <Route path="/" element={<Navigate to="home" />} />
+            <Route path="home" element={<HomeRoute />} />
+            <Route path="about" element={<AboutRoute />} />
+          </Routes>
+        </Main>
+      </Router>
+    </ThemeProvider>
+  )
 }
 
-export default App;
+const Header = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 45px;
+  background-color: #111;
+  display: flex;
+  align-items: center;
+
+  > a {
+    text-decoration: none;
+    margin: 0 9px;
+    color: #ccc;
+
+    &.active {
+      color: white;
+    }
+  }
+`
+
+const Main = styled.main`
+  margin-top: 45px;
+  padding: 9px;
+`
+
+export default App
