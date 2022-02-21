@@ -12,7 +12,8 @@ const theme = {
   styles: {
     root: {
       fontFamily: 'body',
-      fontWeight: 'body'
+      fontWeight: 'body',
+      height: '100%',
     }
   }
 }

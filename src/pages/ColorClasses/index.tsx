@@ -67,15 +67,15 @@ class ColorClasses extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <div>
-          分层数
-          <input
-            type="text"
-            value={segment}
-            onChange={this.handleSegmentChange}
-          />
-        </div>
         <div className={styles.colorPicker}>
+          <div className={styles.title}>
+            分层数
+            <input
+              type="text"
+              value={segment}
+              onChange={this.handleSegmentChange}
+            />
+          </div>
           <div>Start: {pickerStartColor}</div>
           <SketchPicker
             color={pickerStartColor}
@@ -87,6 +87,7 @@ class ColorClasses extends React.Component {
             onChange={this.handleEndColorChange}
           />
         </div>
+        <div className={styles.colorWrapper}>
         {colorArray.length > 0 ? (
           <div>
             {colorArray.map((color, index) => {
@@ -94,6 +95,7 @@ class ColorClasses extends React.Component {
             })}
           </div>
         ) : null}
+        </div>
       </div>
     )
   }
